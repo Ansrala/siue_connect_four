@@ -85,6 +85,30 @@ namespace connect_four {
 	private: System::Windows::Forms::CheckBox^  checkBox2;
 	private: System::Windows::Forms::GroupBox^  groupBox2;
 	private: System::Windows::Forms::GroupBox^  groupBox3;
+	private: System::Windows::Forms::GroupBox^  groupBox4;
+	private: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::Button^  button51;
+	private: System::Windows::Forms::Button^  button50;
+	private: System::Windows::Forms::Button^  button49;
+	private: System::Windows::Forms::Button^  button48;
+	private: System::Windows::Forms::Button^  button47;
+	private: System::Windows::Forms::MenuStrip^  menuStrip1;
+	private: System::Windows::Forms::ToolStripMenuItem^  toolStripMenuItem1;
+	private: System::Windows::Forms::ToolStripMenuItem^  openLogFileToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  saveLogFileToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  exitToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  gameToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  startGameToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  resetGameToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  fowardLogToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  backLogToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  aboutToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  computerTImeLimitToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  secondsToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  secondsToolStripMenuItem1;
+	private: System::Windows::Forms::ToolStripMenuItem^  secondsToolStripMenuItem2;
+	private: System::Windows::Forms::ToolStripMenuItem^  minuteToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  noLimitToolStripMenuItem;
 	protected: 
 
 	private:
@@ -151,14 +175,40 @@ namespace connect_four {
 			this->checkBox2 = (gcnew System::Windows::Forms::CheckBox());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
 			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
+			this->groupBox4 = (gcnew System::Windows::Forms::GroupBox());
+			this->button47 = (gcnew System::Windows::Forms::Button());
+			this->button48 = (gcnew System::Windows::Forms::Button());
+			this->button49 = (gcnew System::Windows::Forms::Button());
+			this->button50 = (gcnew System::Windows::Forms::Button());
+			this->button51 = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
+			this->toolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->openLogFileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->saveLogFileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->gameToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->startGameToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->resetGameToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->fowardLogToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->backLogToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->aboutToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->computerTImeLimitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->secondsToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->secondsToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->secondsToolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->minuteToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->noLimitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->groupBox1->SuspendLayout();
 			this->groupBox2->SuspendLayout();
 			this->groupBox3->SuspendLayout();
+			this->groupBox4->SuspendLayout();
+			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(215, 54);
+			this->button1->Location = System::Drawing::Point(211, 21);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(130, 37);
 			this->button1->TabIndex = 0;
@@ -167,7 +217,7 @@ namespace connect_four {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(33, 54);
+			this->button2->Location = System::Drawing::Point(29, 21);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(130, 37);
 			this->button2->TabIndex = 1;
@@ -176,7 +226,7 @@ namespace connect_four {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(211, 24);
+			this->button3->Location = System::Drawing::Point(211, 21);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(130, 37);
 			this->button3->TabIndex = 2;
@@ -185,7 +235,7 @@ namespace connect_four {
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(29, 24);
+			this->button4->Location = System::Drawing::Point(29, 21);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(130, 37);
 			this->button4->TabIndex = 3;
@@ -238,10 +288,9 @@ namespace connect_four {
 			this->groupBox1->Controls->Add(this->button5);
 			this->groupBox1->Location = System::Drawing::Point(610, 80);
 			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(562, 523);
+			this->groupBox1->Size = System::Drawing::Size(562, 489);
 			this->groupBox1->TabIndex = 4;
 			this->groupBox1->TabStop = false;
-			this->groupBox1->Text = L"groupBox1";
 			// 
 			// button5
 			// 
@@ -582,7 +631,7 @@ namespace connect_four {
 			// checkBox1
 			// 
 			this->checkBox1->AutoSize = true;
-			this->checkBox1->Location = System::Drawing::Point(33, 99);
+			this->checkBox1->Location = System::Drawing::Point(29, 66);
 			this->checkBox1->Name = L"checkBox1";
 			this->checkBox1->Size = System::Drawing::Size(203, 21);
 			this->checkBox1->TabIndex = 5;
@@ -592,7 +641,7 @@ namespace connect_four {
 			// checkBox2
 			// 
 			this->checkBox2->AutoSize = true;
-			this->checkBox2->Location = System::Drawing::Point(29, 67);
+			this->checkBox2->Location = System::Drawing::Point(29, 64);
 			this->checkBox2->Name = L"checkBox2";
 			this->checkBox2->Size = System::Drawing::Size(211, 21);
 			this->checkBox2->TabIndex = 6;
@@ -617,22 +666,209 @@ namespace connect_four {
 			this->groupBox3->Controls->Add(this->checkBox2);
 			this->groupBox3->Controls->Add(this->button4);
 			this->groupBox3->Controls->Add(this->button3);
-			this->groupBox3->Location = System::Drawing::Point(16, 299);
+			this->groupBox3->Location = System::Drawing::Point(12, 299);
 			this->groupBox3->Name = L"groupBox3";
-			this->groupBox3->Size = System::Drawing::Size(407, 202);
+			this->groupBox3->Size = System::Drawing::Size(411, 202);
 			this->groupBox3->TabIndex = 8;
 			this->groupBox3->TabStop = false;
 			this->groupBox3->Text = L"Black";
 			this->groupBox3->Enter += gcnew System::EventHandler(this, &Form1::groupBox3_Enter);
 			// 
+			// groupBox4
+			// 
+			this->groupBox4->Controls->Add(this->label1);
+			this->groupBox4->Controls->Add(this->button51);
+			this->groupBox4->Controls->Add(this->button50);
+			this->groupBox4->Controls->Add(this->button49);
+			this->groupBox4->Controls->Add(this->button48);
+			this->groupBox4->Controls->Add(this->button47);
+			this->groupBox4->Location = System::Drawing::Point(12, 527);
+			this->groupBox4->Name = L"groupBox4";
+			this->groupBox4->Size = System::Drawing::Size(411, 178);
+			this->groupBox4->TabIndex = 9;
+			this->groupBox4->TabStop = false;
+			this->groupBox4->Text = L"Control";
+			// 
+			// button47
+			// 
+			this->button47->Location = System::Drawing::Point(29, 21);
+			this->button47->Name = L"button47";
+			this->button47->Size = System::Drawing::Size(130, 37);
+			this->button47->TabIndex = 7;
+			this->button47->Text = L"Start Game";
+			this->button47->UseVisualStyleBackColor = true;
+			// 
+			// button48
+			// 
+			this->button48->Location = System::Drawing::Point(211, 21);
+			this->button48->Name = L"button48";
+			this->button48->Size = System::Drawing::Size(130, 37);
+			this->button48->TabIndex = 8;
+			this->button48->Text = L"Reset Game";
+			this->button48->UseVisualStyleBackColor = true;
+			// 
+			// button49
+			// 
+			this->button49->Location = System::Drawing::Point(29, 78);
+			this->button49->Name = L"button49";
+			this->button49->Size = System::Drawing::Size(130, 37);
+			this->button49->TabIndex = 9;
+			this->button49->Text = L"Forward Log";
+			this->button49->UseVisualStyleBackColor = true;
+			// 
+			// button50
+			// 
+			this->button50->Location = System::Drawing::Point(29, 121);
+			this->button50->Name = L"button50";
+			this->button50->Size = System::Drawing::Size(130, 37);
+			this->button50->TabIndex = 10;
+			this->button50->Text = L"Back Log";
+			this->button50->UseVisualStyleBackColor = true;
+			// 
+			// button51
+			// 
+			this->button51->Location = System::Drawing::Point(211, 84);
+			this->button51->Name = L"button51";
+			this->button51->Size = System::Drawing::Size(75, 75);
+			this->button51->TabIndex = 42;
+			this->button51->UseVisualStyleBackColor = true;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(211, 64);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(99, 17);
+			this->label1->TabIndex = 43;
+			this->label1->Text = L"Current Player";
+			this->label1->Click += gcnew System::EventHandler(this, &Form1::label1_Click);
+			// 
+			// menuStrip1
+			// 
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {this->toolStripMenuItem1, 
+				this->gameToolStripMenuItem, this->computerTImeLimitToolStripMenuItem});
+			this->menuStrip1->Location = System::Drawing::Point(0, 0);
+			this->menuStrip1->Name = L"menuStrip1";
+			this->menuStrip1->Size = System::Drawing::Size(1184, 28);
+			this->menuStrip1->TabIndex = 10;
+			this->menuStrip1->Text = L"menuStrip1";
+			// 
+			// toolStripMenuItem1
+			// 
+			this->toolStripMenuItem1->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {this->openLogFileToolStripMenuItem, 
+				this->saveLogFileToolStripMenuItem, this->exitToolStripMenuItem});
+			this->toolStripMenuItem1->Name = L"toolStripMenuItem1";
+			this->toolStripMenuItem1->Size = System::Drawing::Size(44, 24);
+			this->toolStripMenuItem1->Text = L"File";
+			this->toolStripMenuItem1->Click += gcnew System::EventHandler(this, &Form1::toolStripMenuItem1_Click);
+			// 
+			// openLogFileToolStripMenuItem
+			// 
+			this->openLogFileToolStripMenuItem->Name = L"openLogFileToolStripMenuItem";
+			this->openLogFileToolStripMenuItem->Size = System::Drawing::Size(170, 24);
+			this->openLogFileToolStripMenuItem->Text = L"Open Log File";
+			// 
+			// saveLogFileToolStripMenuItem
+			// 
+			this->saveLogFileToolStripMenuItem->Name = L"saveLogFileToolStripMenuItem";
+			this->saveLogFileToolStripMenuItem->Size = System::Drawing::Size(170, 24);
+			this->saveLogFileToolStripMenuItem->Text = L"Save Log File";
+			// 
+			// exitToolStripMenuItem
+			// 
+			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(170, 24);
+			this->exitToolStripMenuItem->Text = L"Exit";
+			// 
+			// gameToolStripMenuItem
+			// 
+			this->gameToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {this->startGameToolStripMenuItem, 
+				this->resetGameToolStripMenuItem, this->fowardLogToolStripMenuItem, this->backLogToolStripMenuItem, this->aboutToolStripMenuItem});
+			this->gameToolStripMenuItem->Name = L"gameToolStripMenuItem";
+			this->gameToolStripMenuItem->Size = System::Drawing::Size(60, 24);
+			this->gameToolStripMenuItem->Text = L"Game";
+			// 
+			// startGameToolStripMenuItem
+			// 
+			this->startGameToolStripMenuItem->Name = L"startGameToolStripMenuItem";
+			this->startGameToolStripMenuItem->Size = System::Drawing::Size(157, 24);
+			this->startGameToolStripMenuItem->Text = L"Start Game";
+			// 
+			// resetGameToolStripMenuItem
+			// 
+			this->resetGameToolStripMenuItem->Name = L"resetGameToolStripMenuItem";
+			this->resetGameToolStripMenuItem->Size = System::Drawing::Size(157, 24);
+			this->resetGameToolStripMenuItem->Text = L"Reset Game";
+			// 
+			// fowardLogToolStripMenuItem
+			// 
+			this->fowardLogToolStripMenuItem->Name = L"fowardLogToolStripMenuItem";
+			this->fowardLogToolStripMenuItem->Size = System::Drawing::Size(157, 24);
+			this->fowardLogToolStripMenuItem->Text = L"Foward Log";
+			// 
+			// backLogToolStripMenuItem
+			// 
+			this->backLogToolStripMenuItem->Name = L"backLogToolStripMenuItem";
+			this->backLogToolStripMenuItem->Size = System::Drawing::Size(157, 24);
+			this->backLogToolStripMenuItem->Text = L"Back Log";
+			// 
+			// aboutToolStripMenuItem
+			// 
+			this->aboutToolStripMenuItem->Name = L"aboutToolStripMenuItem";
+			this->aboutToolStripMenuItem->Size = System::Drawing::Size(157, 24);
+			this->aboutToolStripMenuItem->Text = L"About";
+			// 
+			// computerTImeLimitToolStripMenuItem
+			// 
+			this->computerTImeLimitToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {this->secondsToolStripMenuItem, 
+				this->secondsToolStripMenuItem1, this->secondsToolStripMenuItem2, this->minuteToolStripMenuItem, this->noLimitToolStripMenuItem});
+			this->computerTImeLimitToolStripMenuItem->Name = L"computerTImeLimitToolStripMenuItem";
+			this->computerTImeLimitToolStripMenuItem->Size = System::Drawing::Size(161, 24);
+			this->computerTImeLimitToolStripMenuItem->Text = L"Computer Time Limit";
+			// 
+			// secondsToolStripMenuItem
+			// 
+			this->secondsToolStripMenuItem->Checked = true;
+			this->secondsToolStripMenuItem->CheckState = System::Windows::Forms::CheckState::Checked;
+			this->secondsToolStripMenuItem->Name = L"secondsToolStripMenuItem";
+			this->secondsToolStripMenuItem->Size = System::Drawing::Size(153, 24);
+			this->secondsToolStripMenuItem->Text = L"5 Seconds";
+			// 
+			// secondsToolStripMenuItem1
+			// 
+			this->secondsToolStripMenuItem1->Name = L"secondsToolStripMenuItem1";
+			this->secondsToolStripMenuItem1->Size = System::Drawing::Size(153, 24);
+			this->secondsToolStripMenuItem1->Text = L"10 Seconds";
+			// 
+			// secondsToolStripMenuItem2
+			// 
+			this->secondsToolStripMenuItem2->Name = L"secondsToolStripMenuItem2";
+			this->secondsToolStripMenuItem2->Size = System::Drawing::Size(153, 24);
+			this->secondsToolStripMenuItem2->Text = L"20 Seconds";
+			// 
+			// minuteToolStripMenuItem
+			// 
+			this->minuteToolStripMenuItem->Name = L"minuteToolStripMenuItem";
+			this->minuteToolStripMenuItem->Size = System::Drawing::Size(153, 24);
+			this->minuteToolStripMenuItem->Text = L"1 Minute";
+			// 
+			// noLimitToolStripMenuItem
+			// 
+			this->noLimitToolStripMenuItem->Name = L"noLimitToolStripMenuItem";
+			this->noLimitToolStripMenuItem->Size = System::Drawing::Size(153, 24);
+			this->noLimitToolStripMenuItem->Text = L"No Limit";
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1401, 615);
+			this->ClientSize = System::Drawing::Size(1184, 717);
+			this->Controls->Add(this->groupBox4);
 			this->Controls->Add(this->groupBox3);
 			this->Controls->Add(this->groupBox2);
 			this->Controls->Add(this->groupBox1);
+			this->Controls->Add(this->menuStrip1);
+			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"Form1";
 			this->Text = L"Form1";
 			this->groupBox1->ResumeLayout(false);
@@ -640,13 +876,22 @@ namespace connect_four {
 			this->groupBox2->PerformLayout();
 			this->groupBox3->ResumeLayout(false);
 			this->groupBox3->PerformLayout();
+			this->groupBox4->ResumeLayout(false);
+			this->groupBox4->PerformLayout();
+			this->menuStrip1->ResumeLayout(false);
+			this->menuStrip1->PerformLayout();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
 	private: System::Void groupBox2_Enter(System::Object^  sender, System::EventArgs^  e) {
 			 }
 private: System::Void groupBox3_Enter(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void toolStripMenuItem1_Click(System::Object^  sender, System::EventArgs^  e) {
 		 }
 };
 }
