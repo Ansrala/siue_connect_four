@@ -83,7 +83,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.ico" />
+    <None Include="blackPlayer.png" />
+    <None Include="filledBlack.png" />
+    <None Include="filledRed.png" />
+    <None Include="open.png" />
     <None Include="ReadMe.txt" />
+    <None Include="redPlayer.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
