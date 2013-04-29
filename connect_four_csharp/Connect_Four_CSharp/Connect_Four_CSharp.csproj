@@ -77,11 +77,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\blackPlayer.png" />
-    <Content Include="Images\filledBlack.png" />
-    <Content Include="Images\filledRed.png" />
-    <Content Include="Images\open.png" />
-    <Content Include="Images\redPlayer.png" />
+    <EmbeddedResource Include="Images\blackPlayer.png" />
+    <EmbeddedResource Include="Images\filledBlack.png" />
+    <EmbeddedResource Include="Images\filledRed.png" />
+    <EmbeddedResource Include="Images\open.png" />
+    <EmbeddedResource Include="Images\redPlayer.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
