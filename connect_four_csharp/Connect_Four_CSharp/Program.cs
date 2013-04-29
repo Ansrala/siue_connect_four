@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication2
+namespace Connect_Four_CSharp
 {
     static class Program
     {

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{16A87640-BE19-43F4-846C-96B835E8C5BB}</ProjectGuid>
+    <ProjectGuid>{5F574746-0386-4830-BDFF-AA552A0B55AE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WindowsFormsApplication2</RootNamespace>
-    <AssemblyName>WindowsFormsApplication2</AssemblyName>
+    <RootNamespace>Connect_Four_CSharp</RootNamespace>
+    <AssemblyName>Connect_Four_CSharp</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
