@@ -1,6 +1,6 @@
 ﻿namespace Connect_Four_CSharp
 {
-    partial class Form1
+    partial class gameInterface
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(gameInterface));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,6 +44,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.TurnIndicator = new System.Windows.Forms.PictureBox();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -67,13 +68,13 @@
             this.noLimitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cell12 = new System.Windows.Forms.PictureBox();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.Drop6 = new System.Windows.Forms.Button();
+            this.Drop5 = new System.Windows.Forms.Button();
+            this.Drop4 = new System.Windows.Forms.Button();
+            this.Drop3 = new System.Windows.Forms.Button();
+            this.Drop2 = new System.Windows.Forms.Button();
+            this.Drop1 = new System.Windows.Forms.Button();
+            this.Drop0 = new System.Windows.Forms.Button();
             this.cell60 = new System.Windows.Forms.PictureBox();
             this.cell50 = new System.Windows.Forms.PictureBox();
             this.cell40 = new System.Windows.Forms.PictureBox();
@@ -118,6 +119,7 @@
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TurnIndicator)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cell12)).BeginInit();
@@ -180,7 +182,6 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Red";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // label3
             // 
@@ -323,6 +324,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.TurnIndicator);
             this.groupBox3.Controls.Add(this.button8);
             this.groupBox3.Controls.Add(this.button7);
             this.groupBox3.Controls.Add(this.button5);
@@ -331,10 +333,20 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(309, 150);
+            this.groupBox3.Size = new System.Drawing.Size(309, 227);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Game Controls";
+            // 
+            // TurnIndicator
+            // 
+            this.TurnIndicator.BackgroundImage = global::Connect_Four_CSharp.Properties.Resources.redPlayer;
+            this.TurnIndicator.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.TurnIndicator.Location = new System.Drawing.Point(175, 84);
+            this.TurnIndicator.Name = "TurnIndicator";
+            this.TurnIndicator.Size = new System.Drawing.Size(94, 93);
+            this.TurnIndicator.TabIndex = 4;
+            this.TurnIndicator.TabStop = false;
             // 
             // button8
             // 
@@ -504,13 +516,13 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.cell12);
-            this.groupBox4.Controls.Add(this.button15);
-            this.groupBox4.Controls.Add(this.button14);
-            this.groupBox4.Controls.Add(this.button13);
-            this.groupBox4.Controls.Add(this.button12);
-            this.groupBox4.Controls.Add(this.button11);
-            this.groupBox4.Controls.Add(this.button10);
-            this.groupBox4.Controls.Add(this.button9);
+            this.groupBox4.Controls.Add(this.Drop6);
+            this.groupBox4.Controls.Add(this.Drop5);
+            this.groupBox4.Controls.Add(this.Drop4);
+            this.groupBox4.Controls.Add(this.Drop3);
+            this.groupBox4.Controls.Add(this.Drop2);
+            this.groupBox4.Controls.Add(this.Drop1);
+            this.groupBox4.Controls.Add(this.Drop0);
             this.groupBox4.Controls.Add(this.cell60);
             this.groupBox4.Controls.Add(this.cell50);
             this.groupBox4.Controls.Add(this.cell40);
@@ -571,75 +583,82 @@
             this.cell12.TabIndex = 49;
             this.cell12.TabStop = false;
             // 
-            // button15
+            // Drop6
             // 
-            this.button15.Location = new System.Drawing.Point(580, 17);
-            this.button15.Margin = new System.Windows.Forms.Padding(2);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(90, 37);
-            this.button15.TabIndex = 48;
-            this.button15.Text = "V";
-            this.button15.UseVisualStyleBackColor = true;
+            this.Drop6.Location = new System.Drawing.Point(580, 17);
+            this.Drop6.Margin = new System.Windows.Forms.Padding(2);
+            this.Drop6.Name = "Drop6";
+            this.Drop6.Size = new System.Drawing.Size(90, 37);
+            this.Drop6.TabIndex = 48;
+            this.Drop6.Text = "V";
+            this.Drop6.UseVisualStyleBackColor = true;
+            this.Drop6.Click += new System.EventHandler(this.Drop6_Click);
             // 
-            // button14
+            // Drop5
             // 
-            this.button14.Location = new System.Drawing.Point(486, 17);
-            this.button14.Margin = new System.Windows.Forms.Padding(2);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(90, 37);
-            this.button14.TabIndex = 47;
-            this.button14.Text = "V";
-            this.button14.UseVisualStyleBackColor = true;
+            this.Drop5.Location = new System.Drawing.Point(486, 17);
+            this.Drop5.Margin = new System.Windows.Forms.Padding(2);
+            this.Drop5.Name = "Drop5";
+            this.Drop5.Size = new System.Drawing.Size(90, 37);
+            this.Drop5.TabIndex = 47;
+            this.Drop5.Text = "V";
+            this.Drop5.UseVisualStyleBackColor = true;
+            this.Drop5.Click += new System.EventHandler(this.Drop5_Click);
             // 
-            // button13
+            // Drop4
             // 
-            this.button13.Location = new System.Drawing.Point(392, 17);
-            this.button13.Margin = new System.Windows.Forms.Padding(2);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(90, 37);
-            this.button13.TabIndex = 46;
-            this.button13.Text = "V";
-            this.button13.UseVisualStyleBackColor = true;
+            this.Drop4.Location = new System.Drawing.Point(392, 17);
+            this.Drop4.Margin = new System.Windows.Forms.Padding(2);
+            this.Drop4.Name = "Drop4";
+            this.Drop4.Size = new System.Drawing.Size(90, 37);
+            this.Drop4.TabIndex = 46;
+            this.Drop4.Text = "V";
+            this.Drop4.UseVisualStyleBackColor = true;
+            this.Drop4.Click += new System.EventHandler(this.Drop4_Click);
             // 
-            // button12
+            // Drop3
             // 
-            this.button12.Location = new System.Drawing.Point(297, 17);
-            this.button12.Margin = new System.Windows.Forms.Padding(2);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(90, 37);
-            this.button12.TabIndex = 45;
-            this.button12.Text = "V";
-            this.button12.UseVisualStyleBackColor = true;
+            this.Drop3.Location = new System.Drawing.Point(297, 17);
+            this.Drop3.Margin = new System.Windows.Forms.Padding(2);
+            this.Drop3.Name = "Drop3";
+            this.Drop3.Size = new System.Drawing.Size(90, 37);
+            this.Drop3.TabIndex = 45;
+            this.Drop3.Text = "V";
+            this.Drop3.UseVisualStyleBackColor = true;
+            this.Drop3.Click += new System.EventHandler(this.Drop3_Click);
             // 
-            // button11
+            // Drop2
             // 
-            this.button11.Location = new System.Drawing.Point(202, 17);
-            this.button11.Margin = new System.Windows.Forms.Padding(2);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(90, 37);
-            this.button11.TabIndex = 44;
-            this.button11.Text = "V";
-            this.button11.UseVisualStyleBackColor = true;
+            this.Drop2.Location = new System.Drawing.Point(202, 17);
+            this.Drop2.Margin = new System.Windows.Forms.Padding(2);
+            this.Drop2.Name = "Drop2";
+            this.Drop2.Size = new System.Drawing.Size(90, 37);
+            this.Drop2.TabIndex = 44;
+            this.Drop2.Text = "V";
+            this.Drop2.UseVisualStyleBackColor = true;
+            this.Drop2.Click += new System.EventHandler(this.Drop2_Click);
             // 
-            // button10
+            // Drop1
             // 
-            this.button10.Location = new System.Drawing.Point(108, 17);
-            this.button10.Margin = new System.Windows.Forms.Padding(2);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(90, 37);
-            this.button10.TabIndex = 43;
-            this.button10.Text = "V";
-            this.button10.UseVisualStyleBackColor = true;
+            this.Drop1.Location = new System.Drawing.Point(108, 17);
+            this.Drop1.Margin = new System.Windows.Forms.Padding(2);
+            this.Drop1.Name = "Drop1";
+            this.Drop1.Size = new System.Drawing.Size(90, 37);
+            this.Drop1.TabIndex = 43;
+            this.Drop1.Text = "V";
+            this.Drop1.UseVisualStyleBackColor = true;
+            this.Drop1.Click += new System.EventHandler(this.Drop1_Click);
             // 
-            // button9
+            // Drop0
             // 
-            this.button9.Location = new System.Drawing.Point(14, 17);
-            this.button9.Margin = new System.Windows.Forms.Padding(2);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(90, 37);
-            this.button9.TabIndex = 42;
-            this.button9.Text = "V";
-            this.button9.UseVisualStyleBackColor = true;
+            this.Drop0.Location = new System.Drawing.Point(14, 17);
+            this.Drop0.Margin = new System.Windows.Forms.Padding(2);
+            this.Drop0.Name = "Drop0";
+            this.Drop0.Size = new System.Drawing.Size(90, 37);
+            this.Drop0.TabIndex = 42;
+            this.Drop0.Text = "V";
+            this.Drop0.UseVisualStyleBackColor = true;
+            this.Drop0.Click += new System.EventHandler(this.Drop0_Click);
             // 
             // cell60
             // 
@@ -1094,7 +1113,7 @@
             this.cell05.TabIndex = 0;
             this.cell05.TabStop = false;
             // 
-            // Form1
+            // gameInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1108,14 +1127,15 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "gameInterface";
+            this.Text = "The most advanced game of connect 4 ever";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TurnIndicator)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -1246,14 +1266,15 @@
         private System.Windows.Forms.PictureBox cell25;
         private System.Windows.Forms.PictureBox cell15;
         private System.Windows.Forms.PictureBox cell05;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button Drop6;
+        private System.Windows.Forms.Button Drop5;
+        private System.Windows.Forms.Button Drop4;
+        private System.Windows.Forms.Button Drop3;
+        private System.Windows.Forms.Button Drop2;
+        private System.Windows.Forms.Button Drop1;
+        private System.Windows.Forms.Button Drop0;
         private System.Windows.Forms.PictureBox cell12;
+        private System.Windows.Forms.PictureBox TurnIndicator;
     }
 }
 
