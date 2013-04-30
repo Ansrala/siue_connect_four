@@ -229,7 +229,48 @@ namespace Connect_Four_CSharp
             drop(isRedTurn, 6);
         }
 
+        private int findWinner()
+        {
+            int redsV = 0;
+            int [] redsH = new int[6];
+            int blacksV = 0;
+            int [] blacksH = new int [6];
 
+            int lastH = 0;
+            int lastV = 0;
+
+            for (int i = 0; i < 7; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    if (board[i, j] != lastV)
+                    {
+                        redsV = 0;
+                        blacksV = 0;
+                        lastV = board[i, j];
+                    }
+
+                    if (board[i, j] == 1)
+                    {
+                        redsV++;
+                    }
+                    else if (board[i, j] == -1)
+                    {
+                        blacksV++;
+                    }
+
+                    if (blacksV >= 4 || redsV >= 4)
+                    {
+                        return lastV;
+                    }
+
+                }
+
+
+            }
+
+            return 0;
+        }
 
     }
 }
