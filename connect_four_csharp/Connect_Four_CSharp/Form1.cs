@@ -12,6 +12,9 @@ using System.Reflection;
 
 
 
+//IF YOU CREATE A CONTROL, NAME IT SOMETHING MEANINGFUL
+//IF I SEE button01 ANYWHERE, SOMEONE WILL DIE
+
 namespace Connect_Four_CSharp
 {
     public partial class gameInterface : Form
@@ -22,6 +25,7 @@ namespace Connect_Four_CSharp
 
         PictureBox [,] boardControl;
         Button[] buttonControl;
+        int[] counts;
         int [,] board;
         Image blackFill;
         Image redFill;
@@ -39,6 +43,12 @@ namespace Connect_Four_CSharp
 
             boardControl = new PictureBox[7,6];
             buttonControl = new Button[7];
+            counts = new int[7];
+
+            for (int i = 0; i < 7; i++)
+            {
+                counts[i] = 0;
+            }
 
             //This bit here is how to get the images from the resource handler
             Assembly _assembly;
@@ -104,6 +114,34 @@ namespace Connect_Four_CSharp
                 }
             }
 
+            if (!fired)
+            {
+                //player tried to drop on a full row
+                string temp = "";
+                string temp2 = "";
+                if (isRed)
+                {
+                    temp = "Red Player ";
+                    temp2 = "Black Player ";
+                }
+                else
+                {
+                    temp = "Black Player ";
+                    temp2 = "Red Player ";
+                }
+                MessageBox.Show(this, temp + "attempted to place on an invalid row.\n " + temp2 + "Is the Winner!", "Invalid Move", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            else
+            {
+                counts[pos]++;
+                if (counts[pos] >= 6)
+                {
+                    buttonControl[pos].Enabled = false;
+                    //buttonControl[pos].BackColor = Color.Red;
+                }
+            }
+
             //change turns
             isRedTurn = !isRedTurn;
             if (isRedTurn)
@@ -120,6 +158,7 @@ namespace Connect_Four_CSharp
             pushable = (isRedTurn && redHuman) || (!isRedTurn && blackHuman);
             for (int i = 0; i < 7; i++)
             {
+                if(counts[i] < 6)
                 buttonControl[i].Enabled = pushable;
             }
 
@@ -187,7 +226,7 @@ namespace Connect_Four_CSharp
                 }
 
                 buttonControl[j].Enabled = pushable;
-                
+                counts[j] = 0;
             }
             isRedTurn = true;
             TurnIndicator.BackgroundImage = redTurn;
@@ -232,15 +271,41 @@ namespace Connect_Four_CSharp
         private int findWinner()
         {
             int redsV = 0;
-            int [] redsH = new int[6];
+            int redsH = 0;
+            int redsD = 0;
             int blacksV = 0;
-            int [] blacksH = new int [6];
+            int blacksH = 0;
+            int blacksD = 0;
+
+
+            int[,] startsL = new int[6, 2] {
+                                {0, 3},
+                                {0, 4},
+                                {0,5},
+                                {1,5},
+                                {2,5},
+                                {3,5}};
+
+            int[,] startsR = new int[6, 2] {
+                                {6,3},
+                                {6,4},
+                                {6,5},
+                                {5,5},
+                                {4,5},
+                                {3,5}};
+
+
+
 
             int lastH = 0;
             int lastV = 0;
+            int lastD = 0;
 
+            //search vertical
             for (int i = 0; i < 7; i++)
             {
+                redsV = 0;
+                blacksV = 0;
                 for (int j = 0; j < 6; j++)
                 {
                     if (board[i, j] != lastV)
@@ -266,16 +331,119 @@ namespace Connect_Four_CSharp
 
                 }
 
+            }
+
+            //search horizontal
+            for (int j = 0; j < 6; j++)
+            {
+                for (int i = 0; i < 7; i++)
+                {
+                    //count needs to be in a row, otherwise, it doesn't count
+                    if (board[i, j] != lastH)
+                    {
+                        redsH = 0;
+                        blacksH = 0;
+                        lastH = board[i, j];
+                    }
+
+                    if (board[i, j] == 1)
+                    {
+                        redsH++;
+                    }
+                    else if (board[i, j] == -1)
+                    {
+                        blacksH++;
+                    }
+
+                    if (blacksV >= 4 || redsV >= 4)
+                    {
+                        return lastH;
+                    }
+
+                }
 
             }
+
+            //diagnols are trickier, as they start at a weird place and end at a weird place
+            //left to right botoom
+            int disp = 0;
+            for (int k = 0; k < startsL.Length / 2; k++)
+            {
+                disp = 0;
+                redsD = 0;
+                blacksD = 0;
+                //while within bounds
+                while (startsL[k, 0] + disp >= 0 && startsL[k, 0] + disp < 7 && startsL[k, 1] + disp >= 0 && startsL[k, 1] + disp < 6)
+                {
+                    //count needs to be in a row, otherwise, it doesn't count
+                    if (board[startsL[k, 0] + disp, startsL[k, 1] + disp] != lastD)
+                    {
+                        redsD = 0;
+                        blacksD = 0;
+                        lastD = board[startsL[k, 0] + disp, startsL[k, 1] + disp];
+                    }
+
+                    if (board[startsL[k, 0] + disp, startsL[k, 1] + disp] == 1)
+                    {
+                        redsD++;
+                    }
+                    else if (board[startsL[k, 0] + disp, startsL[k, 1] + disp] == -1)
+                    {
+                        blacksD++;
+                    }
+
+                    if (blacksD >= 4 || redsD >= 4)
+                    {
+                        return lastD;
+                    }
+                    disp++;
+                }
+            }
+
+            //right top to left bottom
+            for (int k = 0; k < startsR.Length / 2; k++)
+            {
+                disp = 0;
+                redsD = 0;
+                blacksD = 0;
+                //while within bounds
+                while (startsR[k, 0] + disp >= 0 && startsR[k, 0] + disp < 7 && startsR[k, 1] + disp >= 0 && startsR[k, 1] + disp < 6)
+                {
+                    //count needs to be in a row, otherwise, it doesn't count
+                    if (board[startsR[k, 0] + disp, startsR[k, 1] + disp] != lastD)
+                    {
+                        redsD = 0;
+                        blacksD = 0;
+                        lastD = board[startsR[k, 0] + disp, startsR[k, 1] + disp];
+                    }
+
+                    if (board[startsR[k, 0] + disp, startsR[k, 1] + disp] == 1)
+                    {
+                        redsD++;
+                    }
+                    else if (board[startsR[k, 0] + disp, startsR[k, 1] + disp] == -1)
+                    {
+                        blacksD++;
+                    }
+
+                    if (blacksD >= 4 || redsD >= 4)
+                    {
+                        return lastD;
+                    }
+                    disp--;
+                }
+            }
+
+
 
             return 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // DERP!
+
         }
+
 
     }
 }
