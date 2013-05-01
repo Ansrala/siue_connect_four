@@ -30,25 +30,23 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(gameInterface));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.RedState = new System.Windows.Forms.Label();
+            this.redFile = new System.Windows.Forms.Label();
+            this.redCheckBox = new System.Windows.Forms.CheckBox();
+            this.RedHum = new System.Windows.Forms.Button();
+            this.RedComputer = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.blackFile = new System.Windows.Forms.Label();
+            this.BlackState = new System.Windows.Forms.Label();
+            this.blackCheckBox = new System.Windows.Forms.CheckBox();
+            this.BlackHum = new System.Windows.Forms.Button();
+            this.BlackComputer = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.TurnIndicator = new System.Windows.Forms.PictureBox();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.backButton = new System.Windows.Forms.Button();
+            this.forwardButton = new System.Windows.Forms.Button();
+            this.GameReset = new System.Windows.Forms.Button();
+            this.GameStart = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openLogFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,11 +59,11 @@
             this.backLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.computerTimeLImitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.secondsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.secondsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.secondsToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.minuteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.noLimitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.secondsToolStrip5SecondItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.secondsToolStrip10SeconItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.secondsToolStrip20SecondItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.minuteToolStrip1MinItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.noLimitToolStripNoLimiteItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cell12 = new System.Windows.Forms.PictureBox();
             this.Drop6 = new System.Windows.Forms.Button();
@@ -168,12 +166,11 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.RedState);
+            this.groupBox1.Controls.Add(this.redFile);
+            this.groupBox1.Controls.Add(this.redCheckBox);
+            this.groupBox1.Controls.Add(this.RedHum);
+            this.groupBox1.Controls.Add(this.RedComputer);
             this.groupBox1.Location = new System.Drawing.Point(30, 38);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
@@ -183,75 +180,65 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Red";
             // 
-            // label3
+            // RedState
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(76, 112);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(13, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "2";
+            this.RedState.AutoSize = true;
+            this.RedState.Location = new System.Drawing.Point(34, 63);
+            this.RedState.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.RedState.Name = "RedState";
+            this.RedState.Size = new System.Drawing.Size(41, 13);
+            this.RedState.TabIndex = 3;
+            this.RedState.Text = "Human";
             // 
-            // label2
+            // redFile
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 112);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Score:";
+            this.redFile.AutoSize = true;
+            this.redFile.Location = new System.Drawing.Point(34, 125);
+            this.redFile.Name = "redFile";
+            this.redFile.Size = new System.Drawing.Size(0, 13);
+            this.redFile.TabIndex = 4;
             // 
-            // label1
+            // redCheckBox
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 63);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Human";
+            this.redCheckBox.AutoSize = true;
+            this.redCheckBox.Location = new System.Drawing.Point(34, 89);
+            this.redCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.redCheckBox.Name = "redCheckBox";
+            this.redCheckBox.Size = new System.Drawing.Size(117, 17);
+            this.redCheckBox.TabIndex = 2;
+            this.redCheckBox.Text = "Show Red Console";
+            this.redCheckBox.UseVisualStyleBackColor = true;
+            this.redCheckBox.CheckedChanged += new System.EventHandler(this.redCheckBox_CheckedChanged);
             // 
-            // checkBox1
+            // RedHum
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(34, 89);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(117, 17);
-            this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "Show Red Console";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.RedHum.Location = new System.Drawing.Point(171, 31);
+            this.RedHum.Margin = new System.Windows.Forms.Padding(2);
+            this.RedHum.Name = "RedHum";
+            this.RedHum.Size = new System.Drawing.Size(112, 26);
+            this.RedHum.TabIndex = 1;
+            this.RedHum.Text = "Human";
+            this.RedHum.UseVisualStyleBackColor = true;
+            this.RedHum.Click += new System.EventHandler(this.RedHum_Click);
             // 
-            // button2
+            // RedComputer
             // 
-            this.button2.Location = new System.Drawing.Point(171, 31);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(112, 26);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Human";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(34, 31);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 26);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Computer";
-            this.button1.UseVisualStyleBackColor = true;
+            this.RedComputer.Location = new System.Drawing.Point(34, 31);
+            this.RedComputer.Margin = new System.Windows.Forms.Padding(2);
+            this.RedComputer.Name = "RedComputer";
+            this.RedComputer.Size = new System.Drawing.Size(112, 26);
+            this.RedComputer.TabIndex = 0;
+            this.RedComputer.Text = "Computer";
+            this.RedComputer.UseVisualStyleBackColor = true;
+            this.RedComputer.Click += new System.EventHandler(this.RedComputer_Click);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.checkBox2);
-            this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Controls.Add(this.button4);
+            this.groupBox2.Controls.Add(this.blackFile);
+            this.groupBox2.Controls.Add(this.BlackState);
+            this.groupBox2.Controls.Add(this.blackCheckBox);
+            this.groupBox2.Controls.Add(this.BlackHum);
+            this.groupBox2.Controls.Add(this.BlackComputer);
             this.groupBox2.Location = new System.Drawing.Point(30, 203);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
@@ -261,74 +248,65 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Black";
             // 
-            // label4
+            // blackFile
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(76, 125);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(13, 13);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "2";
+            this.blackFile.AutoSize = true;
+            this.blackFile.Location = new System.Drawing.Point(34, 120);
+            this.blackFile.Name = "blackFile";
+            this.blackFile.Size = new System.Drawing.Size(0, 13);
+            this.blackFile.TabIndex = 5;
             // 
-            // label5
+            // BlackState
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(31, 125);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Score:";
+            this.BlackState.AutoSize = true;
+            this.BlackState.Location = new System.Drawing.Point(34, 63);
+            this.BlackState.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.BlackState.Name = "BlackState";
+            this.BlackState.Size = new System.Drawing.Size(41, 13);
+            this.BlackState.TabIndex = 3;
+            this.BlackState.Text = "Human";
             // 
-            // label6
+            // blackCheckBox
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(34, 63);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 13);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Human";
+            this.blackCheckBox.AutoSize = true;
+            this.blackCheckBox.Location = new System.Drawing.Point(34, 89);
+            this.blackCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.blackCheckBox.Name = "blackCheckBox";
+            this.blackCheckBox.Size = new System.Drawing.Size(124, 17);
+            this.blackCheckBox.TabIndex = 2;
+            this.blackCheckBox.Text = "Show Black Console";
+            this.blackCheckBox.UseVisualStyleBackColor = true;
+            this.blackCheckBox.CheckedChanged += new System.EventHandler(this.blackCheckBox_CheckedChanged);
             // 
-            // checkBox2
+            // BlackHum
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(34, 89);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(124, 17);
-            this.checkBox2.TabIndex = 2;
-            this.checkBox2.Text = "Show Black Console";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.BlackHum.Location = new System.Drawing.Point(171, 31);
+            this.BlackHum.Margin = new System.Windows.Forms.Padding(2);
+            this.BlackHum.Name = "BlackHum";
+            this.BlackHum.Size = new System.Drawing.Size(112, 26);
+            this.BlackHum.TabIndex = 1;
+            this.BlackHum.Text = "Human";
+            this.BlackHum.UseVisualStyleBackColor = true;
+            this.BlackHum.Click += new System.EventHandler(this.BlackHum_Click);
             // 
-            // button3
+            // BlackComputer
             // 
-            this.button3.Location = new System.Drawing.Point(171, 31);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(112, 26);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Human";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(34, 31);
-            this.button4.Margin = new System.Windows.Forms.Padding(2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(112, 26);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "Computer";
-            this.button4.UseVisualStyleBackColor = true;
+            this.BlackComputer.Location = new System.Drawing.Point(34, 31);
+            this.BlackComputer.Margin = new System.Windows.Forms.Padding(2);
+            this.BlackComputer.Name = "BlackComputer";
+            this.BlackComputer.Size = new System.Drawing.Size(112, 26);
+            this.BlackComputer.TabIndex = 0;
+            this.BlackComputer.Text = "Computer";
+            this.BlackComputer.UseVisualStyleBackColor = true;
+            this.BlackComputer.Click += new System.EventHandler(this.BlackComputer_Click);
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.TurnIndicator);
-            this.groupBox3.Controls.Add(this.button8);
-            this.groupBox3.Controls.Add(this.button7);
-            this.groupBox3.Controls.Add(this.button5);
-            this.groupBox3.Controls.Add(this.button6);
+            this.groupBox3.Controls.Add(this.backButton);
+            this.groupBox3.Controls.Add(this.forwardButton);
+            this.groupBox3.Controls.Add(this.GameReset);
+            this.groupBox3.Controls.Add(this.GameStart);
             this.groupBox3.Location = new System.Drawing.Point(30, 368);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
@@ -348,45 +326,49 @@
             this.TurnIndicator.TabIndex = 4;
             this.TurnIndicator.TabStop = false;
             // 
-            // button8
+            // backButton
             // 
-            this.button8.Location = new System.Drawing.Point(34, 109);
-            this.button8.Margin = new System.Windows.Forms.Padding(2);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(112, 26);
-            this.button8.TabIndex = 3;
-            this.button8.Text = "Back Log";
-            this.button8.UseVisualStyleBackColor = true;
+            this.backButton.Location = new System.Drawing.Point(34, 109);
+            this.backButton.Margin = new System.Windows.Forms.Padding(2);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(112, 26);
+            this.backButton.TabIndex = 3;
+            this.backButton.Text = "Back Log";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
-            // button7
+            // forwardButton
             // 
-            this.button7.Location = new System.Drawing.Point(34, 71);
-            this.button7.Margin = new System.Windows.Forms.Padding(2);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(112, 26);
-            this.button7.TabIndex = 2;
-            this.button7.Text = "Foward Log";
-            this.button7.UseVisualStyleBackColor = true;
+            this.forwardButton.Location = new System.Drawing.Point(34, 71);
+            this.forwardButton.Margin = new System.Windows.Forms.Padding(2);
+            this.forwardButton.Name = "forwardButton";
+            this.forwardButton.Size = new System.Drawing.Size(112, 26);
+            this.forwardButton.TabIndex = 2;
+            this.forwardButton.Text = "Foward Log";
+            this.forwardButton.UseVisualStyleBackColor = true;
+            this.forwardButton.Click += new System.EventHandler(this.forwardButton_Click);
             // 
-            // button5
+            // GameReset
             // 
-            this.button5.Location = new System.Drawing.Point(171, 31);
-            this.button5.Margin = new System.Windows.Forms.Padding(2);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(112, 26);
-            this.button5.TabIndex = 1;
-            this.button5.Text = "Reset Game";
-            this.button5.UseVisualStyleBackColor = true;
+            this.GameReset.Location = new System.Drawing.Point(171, 31);
+            this.GameReset.Margin = new System.Windows.Forms.Padding(2);
+            this.GameReset.Name = "GameReset";
+            this.GameReset.Size = new System.Drawing.Size(112, 26);
+            this.GameReset.TabIndex = 1;
+            this.GameReset.Text = "Reset Game";
+            this.GameReset.UseVisualStyleBackColor = true;
+            this.GameReset.Click += new System.EventHandler(this.GameReset_Click);
             // 
-            // button6
+            // GameStart
             // 
-            this.button6.Location = new System.Drawing.Point(34, 31);
-            this.button6.Margin = new System.Windows.Forms.Padding(2);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(112, 26);
-            this.button6.TabIndex = 0;
-            this.button6.Text = "Start Game";
-            this.button6.UseVisualStyleBackColor = true;
+            this.GameStart.Location = new System.Drawing.Point(34, 31);
+            this.GameStart.Margin = new System.Windows.Forms.Padding(2);
+            this.GameStart.Name = "GameStart";
+            this.GameStart.Size = new System.Drawing.Size(112, 26);
+            this.GameStart.TabIndex = 0;
+            this.GameStart.Text = "Start Game";
+            this.GameStart.UseVisualStyleBackColor = true;
+            this.GameStart.Click += new System.EventHandler(this.GameStart_Click);
             // 
             // menuStrip1
             // 
@@ -416,18 +398,21 @@
             this.openLogFileToolStripMenuItem.Name = "openLogFileToolStripMenuItem";
             this.openLogFileToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.openLogFileToolStripMenuItem.Text = "Open Log File";
+            this.openLogFileToolStripMenuItem.Click += new System.EventHandler(this.openLogFileToolStripMenuItem_Click);
             // 
             // saveLogFileToolStripMenuItem
             // 
             this.saveLogFileToolStripMenuItem.Name = "saveLogFileToolStripMenuItem";
             this.saveLogFileToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.saveLogFileToolStripMenuItem.Text = "Save Log File";
+            this.saveLogFileToolStripMenuItem.Click += new System.EventHandler(this.saveLogFileToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // gameToolStripMenuItem
             // 
@@ -452,18 +437,21 @@
             this.resetGameToolStripMenuItem.Name = "resetGameToolStripMenuItem";
             this.resetGameToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.resetGameToolStripMenuItem.Text = "Reset Game";
+            this.resetGameToolStripMenuItem.Click += new System.EventHandler(this.resetGameToolStripMenuItem_Click);
             // 
             // forwardLogToolStripMenuItem
             // 
             this.forwardLogToolStripMenuItem.Name = "forwardLogToolStripMenuItem";
             this.forwardLogToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.forwardLogToolStripMenuItem.Text = "Forward Log";
+            this.forwardLogToolStripMenuItem.Click += new System.EventHandler(this.forwardLogToolStripMenuItem_Click);
             // 
             // backLogToolStripMenuItem
             // 
             this.backLogToolStripMenuItem.Name = "backLogToolStripMenuItem";
             this.backLogToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.backLogToolStripMenuItem.Text = "Back Log";
+            this.backLogToolStripMenuItem.Click += new System.EventHandler(this.backLogToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -474,44 +462,51 @@
             // computerTimeLImitToolStripMenuItem
             // 
             this.computerTimeLImitToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.secondsToolStripMenuItem,
-            this.secondsToolStripMenuItem1,
-            this.secondsToolStripMenuItem2,
-            this.minuteToolStripMenuItem,
-            this.noLimitToolStripMenuItem});
+            this.secondsToolStrip5SecondItem,
+            this.secondsToolStrip10SeconItem,
+            this.secondsToolStrip20SecondItem,
+            this.minuteToolStrip1MinItem,
+            this.noLimitToolStripNoLimiteItem});
             this.computerTimeLImitToolStripMenuItem.Name = "computerTimeLImitToolStripMenuItem";
             this.computerTimeLImitToolStripMenuItem.Size = new System.Drawing.Size(133, 20);
             this.computerTimeLImitToolStripMenuItem.Text = "Computer Time Limit";
             // 
-            // secondsToolStripMenuItem
+            // secondsToolStrip5SecondItem
             // 
-            this.secondsToolStripMenuItem.Name = "secondsToolStripMenuItem";
-            this.secondsToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.secondsToolStripMenuItem.Text = "5 Seconds";
+            this.secondsToolStrip5SecondItem.Checked = true;
+            this.secondsToolStrip5SecondItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.secondsToolStrip5SecondItem.Name = "secondsToolStrip5SecondItem";
+            this.secondsToolStrip5SecondItem.Size = new System.Drawing.Size(152, 22);
+            this.secondsToolStrip5SecondItem.Text = "5 Seconds";
+            this.secondsToolStrip5SecondItem.Click += new System.EventHandler(this.secondsToolStrip5SecondItem_Click);
             // 
-            // secondsToolStripMenuItem1
+            // secondsToolStrip10SeconItem
             // 
-            this.secondsToolStripMenuItem1.Name = "secondsToolStripMenuItem1";
-            this.secondsToolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
-            this.secondsToolStripMenuItem1.Text = "10 Seconds";
+            this.secondsToolStrip10SeconItem.Name = "secondsToolStrip10SeconItem";
+            this.secondsToolStrip10SeconItem.Size = new System.Drawing.Size(152, 22);
+            this.secondsToolStrip10SeconItem.Text = "10 Seconds";
+            this.secondsToolStrip10SeconItem.Click += new System.EventHandler(this.secondsToolStrip10SeconItem_Click);
             // 
-            // secondsToolStripMenuItem2
+            // secondsToolStrip20SecondItem
             // 
-            this.secondsToolStripMenuItem2.Name = "secondsToolStripMenuItem2";
-            this.secondsToolStripMenuItem2.Size = new System.Drawing.Size(133, 22);
-            this.secondsToolStripMenuItem2.Text = "20 Seconds";
+            this.secondsToolStrip20SecondItem.Name = "secondsToolStrip20SecondItem";
+            this.secondsToolStrip20SecondItem.Size = new System.Drawing.Size(152, 22);
+            this.secondsToolStrip20SecondItem.Text = "20 Seconds";
+            this.secondsToolStrip20SecondItem.Click += new System.EventHandler(this.secondsToolStrip20SecondItem_Click);
             // 
-            // minuteToolStripMenuItem
+            // minuteToolStrip1MinItem
             // 
-            this.minuteToolStripMenuItem.Name = "minuteToolStripMenuItem";
-            this.minuteToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.minuteToolStripMenuItem.Text = "1 Minute";
+            this.minuteToolStrip1MinItem.Name = "minuteToolStrip1MinItem";
+            this.minuteToolStrip1MinItem.Size = new System.Drawing.Size(152, 22);
+            this.minuteToolStrip1MinItem.Text = "1 Minute";
+            this.minuteToolStrip1MinItem.Click += new System.EventHandler(this.minuteToolStrip1MinItem_Click);
             // 
-            // noLimitToolStripMenuItem
+            // noLimitToolStripNoLimiteItem
             // 
-            this.noLimitToolStripMenuItem.Name = "noLimitToolStripMenuItem";
-            this.noLimitToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.noLimitToolStripMenuItem.Text = "No Limit";
+            this.noLimitToolStripNoLimiteItem.Name = "noLimitToolStripNoLimiteItem";
+            this.noLimitToolStripNoLimiteItem.Size = new System.Drawing.Size(152, 22);
+            this.noLimitToolStripNoLimiteItem.Text = "No Limit";
+            this.noLimitToolStripNoLimiteItem.Click += new System.EventHandler(this.noLimitToolStripNoLimiteItem_Click);
             // 
             // groupBox4
             // 
@@ -1189,24 +1184,20 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button RedComputer;
+        private System.Windows.Forms.Label RedState;
+        private System.Windows.Forms.CheckBox redCheckBox;
+        private System.Windows.Forms.Button RedHum;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label BlackState;
+        private System.Windows.Forms.CheckBox blackCheckBox;
+        private System.Windows.Forms.Button BlackHum;
+        private System.Windows.Forms.Button BlackComputer;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Button forwardButton;
+        private System.Windows.Forms.Button GameReset;
+        private System.Windows.Forms.Button GameStart;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openLogFileToolStripMenuItem;
@@ -1219,11 +1210,11 @@
         private System.Windows.Forms.ToolStripMenuItem backLogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem computerTimeLImitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem secondsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem secondsToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem secondsToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem minuteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem noLimitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem secondsToolStrip5SecondItem;
+        private System.Windows.Forms.ToolStripMenuItem secondsToolStrip10SeconItem;
+        private System.Windows.Forms.ToolStripMenuItem secondsToolStrip20SecondItem;
+        private System.Windows.Forms.ToolStripMenuItem minuteToolStrip1MinItem;
+        private System.Windows.Forms.ToolStripMenuItem noLimitToolStripNoLimiteItem;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.PictureBox cell60;
         private System.Windows.Forms.PictureBox cell50;
@@ -1275,6 +1266,8 @@
         private System.Windows.Forms.Button Drop0;
         private System.Windows.Forms.PictureBox cell12;
         private System.Windows.Forms.PictureBox TurnIndicator;
+        private System.Windows.Forms.Label redFile;
+        private System.Windows.Forms.Label blackFile;
     }
 }
 
