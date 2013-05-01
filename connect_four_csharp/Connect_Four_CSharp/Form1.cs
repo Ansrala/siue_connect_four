@@ -19,9 +19,12 @@ namespace Connect_Four_CSharp
 {
     public partial class gameInterface : Form
     {
+        bool gameStarted;
         bool isRedTurn;
         bool blackHuman;
         bool redHuman;
+
+        OpenFileDialog openFile;
 
         PictureBox [,] boardControl;
         Button[] buttonControl;
@@ -32,18 +35,30 @@ namespace Connect_Four_CSharp
         Image blankFill;
         Image redTurn, blackTurn;
 
+        string redAIloc;
+        string blackAIloc;
+
         public gameInterface()
         {
             InitializeComponent();
 
+            openFile = new OpenFileDialog();
+            openFile.Filter = "executable files (*.exe)|*.exe|All files (*.*)|*.*";
+            openFile.FilterIndex = 1;
+
+
             blackHuman = true;
             redHuman = true;
+            gameStarted = false;
 
             isRedTurn = true;
 
             boardControl = new PictureBox[7,6];
             buttonControl = new Button[7];
             counts = new int[7];
+
+            redAIloc = "";
+            blackAIloc = "";
 
             for (int i = 0; i < 7; i++)
             {
@@ -457,20 +472,76 @@ namespace Connect_Four_CSharp
         }
 
 
-        private void button5_Click(object sender, EventArgs e)
+        private void GameReset_Click(object sender, EventArgs e)
         {
             resetGame();
+            GameStart.Enabled = true;
+            BlackHum.Enabled = true;
+            BlackComputer.Enabled = true;
+            RedComputer.Enabled = true;
+            RedHum.Enabled = true;
         }
 
         private void resetGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
             resetGame();
+            GameStart.Enabled = true;
+            BlackHum.Enabled = true;
+            BlackComputer.Enabled = true;
+            RedComputer.Enabled = true;
+            RedHum.Enabled = true;
         }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            // DERP!
 
+        private void RedComputer_Click(object sender, EventArgs e)
+        {
+            redHuman = false;
+            RedState.Text = "Computer";
+
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                redFile.Text = redAIloc = openFile.FileName;
+            }
+
+            //open dialogue box
         }
+
+        private void RedHum_Click(object sender, EventArgs e)
+        {
+            redHuman = true;
+             RedState.Text = "Human";
+        }
+
+        private void BlackComputer_Click(object sender, EventArgs e)
+        {
+            blackHuman = false;
+            BlackState.Text = "Computer";
+
+            //open dialogue box
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                blackFile.Text = blackAIloc = openFile.FileName;
+            }
+        }
+
+        private void BlackHum_Click(object sender, EventArgs e)
+        {
+            blackHuman = true;
+            BlackState.Text = "Human";
+        }
+
+        private void GameStart_Click(object sender, EventArgs e)
+        {
+            GameStart.Enabled = false;
+            gameStarted = true;
+
+            BlackHum.Enabled = false;
+            BlackComputer.Enabled = false;
+            RedComputer.Enabled = false;
+            RedHum.Enabled = false;
+        }
+
+
+
 
 
 
