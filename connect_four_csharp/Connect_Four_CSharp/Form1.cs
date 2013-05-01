@@ -577,18 +577,23 @@ namespace Connect_Four_CSharp
             redHuman = false;
             RedState.Text = "Computer";
 
+            //open dialogue box
             if (openFile.ShowDialog() == DialogResult.OK)
             {
                 redFile.Text = redAIloc = openFile.FileName;
             }
 
-            //open dialogue box
+            if ( redFile.Text == "" )
+            {
+                redHuman = true;
+                RedState.Text = "Human";
+            }
         }
 
         private void RedHum_Click(object sender, EventArgs e)
         {
             redHuman = true;
-             RedState.Text = "Human";
+            RedState.Text = "Human";
         }
 
         private void BlackComputer_Click(object sender, EventArgs e)
@@ -600,6 +605,12 @@ namespace Connect_Four_CSharp
             if (openFile.ShowDialog() == DialogResult.OK)
             {
                 blackFile.Text = blackAIloc = openFile.FileName;
+            }
+
+            if (blackFile.Text == "")
+            {
+                blackHuman = true;
+                BlackState.Text = "Human";
             }
         }
 
