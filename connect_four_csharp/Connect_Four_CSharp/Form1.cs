@@ -30,6 +30,7 @@ namespace Connect_Four_CSharp
         Button[] buttonControl;
         int[] counts;
         int [,] board;
+        int[] log;
         Image blackFill;
         Image redFill;
         Image blankFill;
@@ -37,7 +38,8 @@ namespace Connect_Four_CSharp
 
         string redAIloc;
         string blackAIloc;
-
+        int turnCount;
+        int logTurnCount;
         public gameInterface()
         {
             InitializeComponent();
@@ -128,7 +130,8 @@ namespace Connect_Four_CSharp
                     
                 }
             }
-
+            log[turnCount] = pos;
+            logTurnCount = turnCount++; 
             if (!fired)
             {
                 //player tried to drop on a full row
@@ -193,7 +196,76 @@ namespace Connect_Four_CSharp
 
             return fired;
         }
+        public void logBackUp()
+        {
+            int value;
+            if (logTurnCount < 0 || logTurnCount >= turnCount)
+                return;
 
+
+
+            value = log[logTurnCount];
+
+            for (int i = 5; i > -1; i--)
+            {
+                if (board[value, i] != 0)
+                {
+                    board[value, i] = 0;
+                    boardControl[value, i].BackgroundImage = blankFill;
+
+                    if (TurnIndicator.BackgroundImage == blackTurn)
+                        TurnIndicator.BackgroundImage = redTurn;
+                    else
+                        TurnIndicator.BackgroundImage = blackTurn;
+
+                    break;
+                }
+
+            }
+            logTurnCount--;
+
+        }
+        public void logFoward()
+        {
+            int value;
+
+            if (logTurnCount < -1 || logTurnCount >= turnCount - 1)
+                return;
+            logTurnCount++;
+            if (logTurnCount >= turnCount)
+                logTurnCount = turnCount;
+
+            value = log[logTurnCount];
+            for (int i = 5; i >= -1; i--)
+            {
+
+                if (i == -1 || board[value, i] != 0)
+                {
+
+                    i++;
+                    if (logTurnCount % 2 == 0)
+                    {
+                        board[value, i] = 1;
+                        boardControl[value, i].BackgroundImage = redFill;
+                    }
+                    else
+                    {
+                        board[value, i] = -1;
+                        boardControl[value, i].BackgroundImage = blackFill;
+                    }
+                    if (TurnIndicator.BackgroundImage == blackTurn)
+                        TurnIndicator.BackgroundImage = redTurn;
+                    else
+                        TurnIndicator.BackgroundImage = blackTurn;
+
+                    break;
+                }
+
+
+            }
+
+
+        }
 
 
         private void Form1_Load(object sender, EventArgs e)
@@ -258,6 +330,13 @@ namespace Connect_Four_CSharp
                 
                 counts[j] = 0;
             }
+            log = new int[42];
+            for (int i = 0; i < 42; i++)
+            {
+                log[i] = -1;
+            }
+            turnCount = 0;
+            logTurnCount = -1;
             isRedTurn = true;
             TurnIndicator.BackgroundImage = redTurn;
 
@@ -539,6 +618,102 @@ namespace Connect_Four_CSharp
             RedComputer.Enabled = false;
             RedHum.Enabled = false;
         }
+
+        private void openLogFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            resetGame();
+            String content = "";
+            OpenFileDialog openFile = new OpenFileDialog();
+
+            openFile.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            openFile.FilterIndex = 2;
+            openFile.RestoreDirectory = true;
+
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                if (openFile.FileName != "")
+                {
+                    content = File.ReadAllText(openFile.FileName);
+                    for (int i = 0; i < 42; i++)
+                    {
+                        log[i] = -1;
+                    }
+                    int index = 0;
+                    foreach (var s in content.Split(' '))
+                    {
+                        int num;
+                        if (int.TryParse(s, out num))
+                        {
+                            log[index] = num;
+                            index++;
+                        }
+                    }
+                    turnCount = index;
+                }
+                else
+                {
+                    MessageBox.Show("Select a file");
+                }
+            }
+        }
+
+ 
+        private void saveLogFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String content = "";
+            for (int i = 0; i < 42; i++)
+            {
+                if (log[i] == -1)
+                    break;
+                content += log[i].ToString() + " ";
+            }
+
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if (saveFileDialog1.FileName != "")
+                {
+                    File.WriteAllText(saveFileDialog1.FileName, content);
+                }
+                else
+                {
+                    MessageBox.Show("Select a file");
+                }
+            }
+            
+        }
+
+        private void forwardLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logFoward();
+        }
+
+        private void backLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logBackUp();
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            logBackUp();
+        }
+
+        private void forwardButton_Click(object sender, EventArgs e)
+        {
+            logFoward();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+     
 
 
 
