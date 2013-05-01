@@ -272,5 +272,15 @@ namespace Connect_Four_CSharp
             return 0;
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            resetGame();
+        }
+
+        private void resetGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            resetGame();
+        }
+
     }
 }
