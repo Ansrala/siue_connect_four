@@ -168,29 +168,34 @@ namespace Connect_Four_CSharp
                 MessageBox.Show(this, temp + "attempted to place on an invalid row.\n " + temp2 + "Is the Winner!", "Invalid Move", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
-            else
+            
+            for( int i = 0; i < 7; i++)
             {
-                counts[pos]++;
-                if (counts[pos] >= 6)
+
+                if (board[i,5] != 0)
                 {
-                    buttonControl[pos].Enabled = false;
+                    buttonControl[i].Enabled = false;
                     //buttonControl[pos].BackColor = Color.Red;
                 }
             }
 
             //find winners
             int result = findWinner();
+
+
+
+
             if (result == -1)
             {
                 gameStarted = false;
                 MessageBox.Show(this, "Black is the winner!", "Black wins!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
+
             }
             else if (result == 1)
             {
                 gameStarted = false;
                 MessageBox.Show(this, "Red is the winner!", "Red wins!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
+
             }
 
 
@@ -206,13 +211,15 @@ namespace Connect_Four_CSharp
             }
 
             //lock buttons if necissary
-            bool pushable = false;
-            pushable = (isRedTurn && redHuman) || (!isRedTurn && blackHuman);
+            bool pushable;
+            pushable = ((isRedTurn && redHuman) || (!isRedTurn && blackHuman)) && (result == 0);
             for (int i = 0; i < 7; i++)
             {
-                if(counts[i] < 6)
-                buttonControl[i].Enabled = pushable;
+                if (board[pos, 5] == 0)
+                    buttonControl[i].Enabled = pushable;
             }
+
+
 
             this.Update();
 
@@ -243,6 +250,16 @@ namespace Connect_Four_CSharp
                     break;
                 }
 
+            }
+
+            for (int i = 0; i < 7; i++)
+            {
+
+                if (board[i, 5] != 0)
+                {
+                    buttonControl[i].Enabled = false;
+                    //buttonControl[pos].BackColor = Color.Red;
+                }
             }
             logTurnCount--;
 
@@ -285,6 +302,16 @@ namespace Connect_Four_CSharp
                 }
 
 
+            }
+
+            for (int i = 0; i < 7; i++)
+            {
+
+                if (board[i, 5] != 0)
+                {
+                    buttonControl[i].Enabled = false;
+                    //buttonControl[pos].BackColor = Color.Red;
+                }
             }
 
 
@@ -335,9 +362,6 @@ namespace Connect_Four_CSharp
         private void resetGame()
         {
             //this little bit will change
-            bool pushable = true;
-
-            pushable = redHuman;
 
             board = new int[7, 6];
             for (int j = 0; j < 7; j++)
@@ -349,7 +373,7 @@ namespace Connect_Four_CSharp
                     
                 }
 
-                buttonControl[j].Enabled = pushable;
+                buttonControl[j].Enabled = false;
                 
                 counts[j] = 0;
             }
@@ -492,6 +516,8 @@ namespace Connect_Four_CSharp
             //search horizontal
             for (int j = 0; j < 6; j++)
             {
+                redsH = 0;
+                blacksH = 0;
                 for (int i = 0; i < 7; i++)
                 {
                     //count needs to be in a row, otherwise, it doesn't count
@@ -603,6 +629,11 @@ namespace Connect_Four_CSharp
             //call AI turn
             if (((isRedTurn) && (!redHuman)) || ((!isRedTurn) && (!blackHuman)) && gameStarted)
             {
+                for (int i = 0; i < 7; i++)
+                {
+                    buttonControl[i].Enabled = false;
+                }
+
                 aiTurn();
             }
         }
@@ -764,12 +795,14 @@ namespace Connect_Four_CSharp
                 redHuman = true;
                 RedState.Text = "Human";
             }
+            resetGame();
         }
 
         private void RedHum_Click(object sender, EventArgs e)
         {
             redHuman = true;
              RedState.Text = "Human";
+             resetGame();
         }
 
         private void BlackComputer_Click(object sender, EventArgs e)
@@ -788,12 +821,14 @@ namespace Connect_Four_CSharp
                 blackHuman = true;
                 BlackState.Text = "Human";
             }
+            resetGame();
         }
 
         private void BlackHum_Click(object sender, EventArgs e)
         {
             blackHuman = true;
             BlackState.Text = "Human";
+            resetGame();
         }
 
         private void GameStart_Click(object sender, EventArgs e)
@@ -805,6 +840,11 @@ namespace Connect_Four_CSharp
             BlackComputer.Enabled = false;
             RedComputer.Enabled = false;
             RedHum.Enabled = false;
+
+            for (int i = 0; i < 7; i++)
+            {
+                buttonControl[i].Enabled = redHuman;
+            }
 
             if (RedState.Text == "Computer")
             {
