@@ -28,7 +28,6 @@ namespace Connect_Four_CSharp
 
         PictureBox [,] boardControl;
         Button[] buttonControl;
-        int[] counts;
         int [,] board;
         int[] log;
         Image blackFill;
@@ -57,15 +56,9 @@ namespace Connect_Four_CSharp
 
             boardControl = new PictureBox[7,6];
             buttonControl = new Button[7];
-            counts = new int[7];
 
             redAIloc = "";
             blackAIloc = "";
-
-            for (int i = 0; i < 7; i++)
-            {
-                counts[i] = 0;
-            }
 
             //This bit here is how to get the images from the resource handler
             Assembly _assembly;
@@ -130,8 +123,16 @@ namespace Connect_Four_CSharp
                     
                 }
             }
+            if (logTurnCount == -1)
+                logTurnCount = 0;
+            if (turnCount != logTurnCount)
+                turnCount = logTurnCount + 1;
             log[turnCount] = pos;
-            logTurnCount = turnCount++; 
+            logTurnCount = turnCount++;
+
+            for (int i = turnCount; i < 42; i++)
+                log[i] = -1;
+
             if (!fired)
             {
                 //player tried to drop on a full row
@@ -152,12 +153,13 @@ namespace Connect_Four_CSharp
             }
             else
             {
-                counts[pos]++;
-                if (counts[pos] >= 6)
+                if (board[pos,5] != 0)
                 {
                     buttonControl[pos].Enabled = false;
                     //buttonControl[pos].BackColor = Color.Red;
                 }
+                else
+                    buttonControl[pos].Enabled = true;
             }
 
             //find winners
@@ -190,8 +192,11 @@ namespace Connect_Four_CSharp
             pushable = (isRedTurn && redHuman) || (!isRedTurn && blackHuman);
             for (int i = 0; i < 7; i++)
             {
-                if(counts[i] < 6)
-                buttonControl[i].Enabled = pushable;
+                if (board[i, 5] != 0)
+                    buttonControl[i].Enabled = false;
+                else
+                    buttonControl[i].Enabled = pushable;
+                
             }
 
             return fired;
@@ -328,8 +333,7 @@ namespace Connect_Four_CSharp
                 }
 
                 buttonControl[j].Enabled = pushable;
-                
-                counts[j] = 0;
+              
             }
             log = new int[42];
             for (int i = 0; i < 42; i++)
