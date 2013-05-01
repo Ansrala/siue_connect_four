@@ -120,7 +120,10 @@ namespace Connect_Four_CSharp
         {
             //bad move
             if (pos >= 7)
+            {
+                gameStarted = false;
                 return false;
+            }
 
             //go from the bottom
             bool fired = false;
@@ -179,11 +182,13 @@ namespace Connect_Four_CSharp
             int result = findWinner();
             if (result == -1)
             {
+                gameStarted = false;
                 MessageBox.Show(this, "Black is the winner!", "Black wins!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
             else if (result == 1)
             {
+                gameStarted = false;
                 MessageBox.Show(this, "Red is the winner!", "Red wins!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
@@ -208,6 +213,8 @@ namespace Connect_Four_CSharp
                 if(counts[i] < 6)
                 buttonControl[i].Enabled = pushable;
             }
+
+            this.Update();
 
             return fired;
         }
@@ -474,6 +481,7 @@ namespace Connect_Four_CSharp
 
                     if (blacksV >= 4 || redsV >= 4)
                     {
+                        gameStarted = false;
                         return lastV;
                     }
 
@@ -505,6 +513,7 @@ namespace Connect_Four_CSharp
 
                     if (blacksH >= 4 || redsH >= 4)
                     {
+                        gameStarted = false;
                         return lastH;
                     }
 
@@ -513,7 +522,7 @@ namespace Connect_Four_CSharp
             }
 
             //diagnols are trickier, as they start at a weird place and end at a weird place
-            //left to right botoom
+            //left top to right botoom
             int disp = 0;
             for (int k = 0; k < startsL.Length / 2; k++)
             {
@@ -521,27 +530,28 @@ namespace Connect_Four_CSharp
                 redsD = 0;
                 blacksD = 0;
                 //while within bounds
-                while (startsL[k, 0] + disp >= 0 && startsL[k, 0] + disp < 7 && startsL[k, 1] + disp >= 0 && startsL[k, 1] + disp < 6)
+                while (startsL[k, 0] + disp >= 0 && startsL[k, 0] + disp < 7 && startsL[k, 1] - disp >= 0 && startsL[k, 1] - disp < 6)
                 {
                     //count needs to be in a row, otherwise, it doesn't count
-                    if (board[startsL[k, 0] + disp, startsL[k, 1] + disp] != lastD)
+                    if (board[startsL[k, 0] + disp, startsL[k, 1] - disp] != lastD)
                     {
                         redsD = 0;
                         blacksD = 0;
-                        lastD = board[startsL[k, 0] + disp, startsL[k, 1] + disp];
+                        lastD = board[startsL[k, 0] + disp, startsL[k, 1] - disp];
                     }
 
-                    if (board[startsL[k, 0] + disp, startsL[k, 1] + disp] == 1)
+                    if (board[startsL[k, 0] + disp, startsL[k, 1] - disp] == 1)
                     {
                         redsD++;
                     }
-                    else if (board[startsL[k, 0] + disp, startsL[k, 1] + disp] == -1)
+                    else if (board[startsL[k, 0] + disp, startsL[k, 1] - disp] == -1)
                     {
                         blacksD++;
                     }
 
                     if (blacksD >= 4 || redsD >= 4)
                     {
+                        gameStarted = false;
                         return lastD;
                     }
                     disp++;
@@ -576,6 +586,7 @@ namespace Connect_Four_CSharp
 
                     if (blacksD >= 4 || redsD >= 4)
                     {
+                        gameStarted = false;
                         return lastD;
                     }
                     disp--;
@@ -590,7 +601,7 @@ namespace Connect_Four_CSharp
         private void nextTurn()
         {
             //call AI turn
-            if (((isRedTurn) && (!redHuman)) || ((!isRedTurn) && (!blackHuman)))
+            if (((isRedTurn) && (!redHuman)) || ((!isRedTurn) && (!blackHuman)) && gameStarted)
             {
                 aiTurn();
             }
