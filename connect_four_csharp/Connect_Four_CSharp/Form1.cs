@@ -142,6 +142,20 @@ namespace Connect_Four_CSharp
                 }
             }
 
+            //find winners
+            int result = findWinner();
+            if (result == -1)
+            {
+                MessageBox.Show(this, "Black is the winner!", "Black wins!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
+            }
+            else if (result == 1)
+            {
+                MessageBox.Show(this, "Red is the winner!", "Red wins!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
+            }
+
+
             //change turns
             isRedTurn = !isRedTurn;
             if (isRedTurn)
@@ -355,7 +369,7 @@ namespace Connect_Four_CSharp
                         blacksH++;
                     }
 
-                    if (blacksV >= 4 || redsV >= 4)
+                    if (blacksH >= 4 || redsH >= 4)
                     {
                         return lastH;
                     }
@@ -440,6 +454,11 @@ namespace Connect_Four_CSharp
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
         {
 
         }
