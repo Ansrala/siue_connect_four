@@ -1,17 +1,18 @@
 #include <iostream>
 #include <stdlib.h>
 #include "connectfour.h"
+#include <time.h>
 
 using namespace std;
 
 void main ()
 {
+	srand(time(NULL));
 	int n[6][7];
 	int col = -1;
 
 	if ( !getGameBoard( n ) )
 	{
-		system("pause");
 		return;
 	}
 
@@ -25,5 +26,4 @@ void main ()
 	}
 
 	putMove( col );
-	system("pause");
 }

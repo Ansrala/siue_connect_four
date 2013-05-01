@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 using System.IO;
 using System.Reflection;
+using System.Diagnostics;
 
 
 
@@ -36,16 +37,19 @@ namespace Connect_Four_CSharp
         Image blankFill;
         Image redTurn, blackTurn;
 
-        string redAIloc;
-        string blackAIloc;
+        Stopwatch timer = new Stopwatch();
+        int maxTime = 5000;
+
+        
         int turnCount;
         int logTurnCount;
+        ProcessStartInfo redStartInfo;
+        ProcessStartInfo blackStartInfo;
         public gameInterface()
         {
             InitializeComponent();
-
             openFile = new OpenFileDialog();
-            openFile.Filter = "executable files (*.exe)|*.exe|All files (*.*)|*.*";
+            openFile.Filter = "executable files (*.exe)|*.exe";
             openFile.FilterIndex = 1;
 
 
@@ -59,8 +63,19 @@ namespace Connect_Four_CSharp
             buttonControl = new Button[7];
             counts = new int[7];
 
-            redAIloc = "";
-            blackAIloc = "";
+        
+            redStartInfo = new ProcessStartInfo();
+            redStartInfo.FileName = "";
+            redStartInfo.RedirectStandardError = false;
+            redStartInfo.RedirectStandardOutput = false;
+            redStartInfo.UseShellExecute = false;
+            redStartInfo.CreateNoWindow = true;
+            blackStartInfo = new ProcessStartInfo();
+            blackStartInfo.FileName = "";
+            blackStartInfo.RedirectStandardError = false;
+            blackStartInfo.RedirectStandardOutput = false;
+            blackStartInfo.UseShellExecute = false;
+            blackStartInfo.CreateNoWindow = true;
 
             for (int i = 0; i < 7; i++)
             {
@@ -101,7 +116,7 @@ namespace Connect_Four_CSharp
         /// <param name="isRed">is the player red?</param>
         /// <param name="pos">slot, from the left, to drop the piece</param>
         /// <returns>returns true if the move is legit</returns>
-        public bool drop(bool isRed, int pos)
+        public bool drop(int pos)
         {
             //bad move
             if (pos >= 7)
@@ -113,7 +128,7 @@ namespace Connect_Four_CSharp
             {
                 if (board[pos,i] == 0)
                 {
-                    if (isRed)
+                    if (isRedTurn)
                     {
                         board[pos, i] = 1;
                         boardControl[pos, i].BackgroundImage = redFill;
@@ -137,7 +152,7 @@ namespace Connect_Four_CSharp
                 //player tried to drop on a full row
                 string temp = "";
                 string temp2 = "";
-                if (isRed)
+                if (isRedTurn)
                 {
                     temp = "Red Player ";
                     temp2 = "Black Player ";
@@ -165,12 +180,12 @@ namespace Connect_Four_CSharp
             if (result == -1)
             {
                 MessageBox.Show(this, "Black is the winner!", "Black wins!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return true;
+                return false;
             }
             else if (result == 1)
             {
                 MessageBox.Show(this, "Red is the winner!", "Red wins!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return true;
+                return false;
             }
 
 
@@ -345,37 +360,58 @@ namespace Connect_Four_CSharp
 
         private void Drop0_Click(object sender, EventArgs e)
         {
-            drop(isRedTurn, 0);
+            if (drop(0))
+            {
+                nextTurn();
+            }
         }
 
         private void Drop1_Click(object sender, EventArgs e)
         {
-            drop(isRedTurn, 1);
+            if (drop(1))
+            {
+                nextTurn();
+            }
         }
 
         private void Drop2_Click(object sender, EventArgs e)
         {
-            drop(isRedTurn, 2);
+            if (drop(2))
+            {
+                nextTurn();
+            }
         }
 
         private void Drop3_Click(object sender, EventArgs e)
         {
-            drop(isRedTurn, 3);
+            if (drop(3))
+            {
+                nextTurn();
+            }
         }
 
         private void Drop4_Click(object sender, EventArgs e)
         {
-            drop(isRedTurn, 4);
+            if (drop(4))
+            {
+                nextTurn();
+            }
         }
 
         private void Drop5_Click(object sender, EventArgs e)
         {
-            drop(isRedTurn, 5);
+            if (drop(5))
+            {
+                nextTurn();
+            }
         }
 
         private void Drop6_Click(object sender, EventArgs e)
         {
-            drop(isRedTurn, 6);
+            if (drop(6))
+            {
+                nextTurn();
+            }
         }
 
         private int findWinner()
@@ -551,13 +587,134 @@ namespace Connect_Four_CSharp
             return 0;
         }
 
-        private void aiTurn(bool isRed)
+        private void nextTurn()
         {
-            //System.Diagnostics.Proccess
+            //call AI turn
+            if (((isRedTurn) && (!redHuman)) || ((!isRedTurn) && (!blackHuman)))
+            {
+                aiTurn();
+            }
         }
 
-        private void playerTurn()
+        private void aiTurn()
         {
+            if (timer.IsRunning)
+            {
+                timer.Stop();
+            }
+
+            string folder;
+                
+            if(isRedTurn)
+            {
+               redStartInfo.WorkingDirectory= folder = redStartInfo.FileName.Substring(0, redStartInfo.FileName.LastIndexOf('\\')+1);
+            }
+            else
+            {
+                blackStartInfo.WorkingDirectory = folder = blackStartInfo.FileName.Substring(0, blackStartInfo.FileName.LastIndexOf('\\') + 1);
+            }
+
+            string[] boardArray = new string[6];
+
+            for (int i = 0; i < 6; i++)
+            {
+                boardArray[i] = "";
+                for (int j = 0; j < 7; j++)
+                {
+                    if (board[j, 5-i] == -1)
+                    {
+                        if (isRedTurn)
+                        {
+                            boardArray[i] += "-";
+                        }
+                        else
+                        {
+                            boardArray[i] += "+";
+                        }
+                    }
+                    else if (board[j, 5-i] == 1)
+                    {
+                        if (isRedTurn)
+                        {
+                            boardArray[i] += "+";
+                        }
+                        else
+                        {
+                            boardArray[i] += "-";
+                        }
+                    }
+                    else
+                    {
+                        boardArray[i] += ".";   
+                    }
+                }
+            }
+
+            string path = folder + "board.txt";
+
+            File.WriteAllLines( path, boardArray );
+
+            Process processTemp = new Process();
+            if (isRedTurn)
+            {
+                processTemp.StartInfo = redStartInfo;
+            }
+            else
+            {
+                processTemp.StartInfo = blackStartInfo;  
+            }
+
+            try
+            {
+                processTemp.Start();
+                timer.Start();
+                string move = folder + "move.txt";
+                bool cont = true;
+                while (cont)
+                {
+                    if (timer.Elapsed.TotalMilliseconds >= maxTime)
+                    {
+                        //To-Do: Time expired, ask to continue?
+                        cont = false;
+                        processTemp.Close();
+                        break;
+                    }
+
+                    if (File.Exists(move))
+                    {
+                        processTemp.Close();
+                        break;
+                    }
+                }
+
+                timer.Reset();
+                timer.Start();
+
+                while (timer.Elapsed.TotalMilliseconds <= 500)
+                {
+                }
+
+                timer.Reset();
+
+                if (File.Exists(move))
+                {
+                    string result = File.ReadAllText(move);
+                    int pos;
+                    int.TryParse(result, out pos);
+                    drop(pos);
+                    File.Delete(move);
+                    nextTurn();
+                }
+                else
+                {
+                    //To-Do: AI should lose here!
+                }
+            }
+            catch (Exception e)
+            {
+                throw;
+                //To-Do: AI should lose here!
+            }
         }
 
         private void GameReset_Click(object sender, EventArgs e)
@@ -588,10 +745,10 @@ namespace Connect_Four_CSharp
             //open dialogue box
             if (openFile.ShowDialog() == DialogResult.OK)
             {
-                redFile.Text = redAIloc = openFile.FileName;
+                redFile.Text = redStartInfo.FileName = openFile.FileName;
             }
 
-            if ( redFile.Text == "" )
+            if (redStartInfo.FileName == "")
             {
                 redHuman = true;
                 RedState.Text = "Human";
@@ -612,10 +769,10 @@ namespace Connect_Four_CSharp
             //open dialogue box
             if (openFile.ShowDialog() == DialogResult.OK)
             {
-                blackFile.Text = blackAIloc = openFile.FileName;
+                blackFile.Text = blackStartInfo.FileName = openFile.FileName;
             }
 
-			if (blackFile.Text == "")
+            if (blackStartInfo.FileName == "")
             {
                 blackHuman = true;
                 BlackState.Text = "Human";
@@ -637,6 +794,11 @@ namespace Connect_Four_CSharp
             BlackComputer.Enabled = false;
             RedComputer.Enabled = false;
             RedHum.Enabled = false;
+
+            if (RedState.Text == "Computer")
+            {
+                aiTurn();
+            }
         }
 
         private void openLogFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -733,5 +895,83 @@ namespace Connect_Four_CSharp
         {
             this.Close();
         }
+
+        private void redCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (redCheckBox.Checked == true)
+            {
+                redStartInfo.CreateNoWindow = false;
+        //        redStartInfo.UseShellExecute = true;
+            }
+            else
+            {
+                redStartInfo.CreateNoWindow = true;
+        //        redStartInfo.UseShellExecute = false;
+            }
+        }
+
+        private void blackCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (blackCheckBox.Checked == true)
+            {
+                blackStartInfo.CreateNoWindow = false;
+           //     blackStartInfo.UseShellExecute = true;
+            }
+            else
+            {
+                blackStartInfo.CreateNoWindow = true;
+           //     blackStartInfo.UseShellExecute = false;
+            }
+        }
+
+        private void secondsToolStrip5SecondItem_Click(object sender, EventArgs e)
+        {
+            maxTime = 5000;
+            secondsToolStrip5SecondItem.Checked = true;
+            secondsToolStrip10SeconItem.Checked = false;
+            secondsToolStrip20SecondItem.Checked = false;
+            minuteToolStrip1MinItem.Checked = false;
+            noLimitToolStripNoLimiteItem.Checked = false;
+        }
+
+        private void secondsToolStrip10SeconItem_Click(object sender, EventArgs e)
+        {
+            maxTime = 10000;
+            secondsToolStrip5SecondItem.Checked = false;
+            secondsToolStrip10SeconItem.Checked = true;
+            secondsToolStrip20SecondItem.Checked = false;
+            minuteToolStrip1MinItem.Checked = false;
+            noLimitToolStripNoLimiteItem.Checked = false;
+        }
+
+        private void secondsToolStrip20SecondItem_Click(object sender, EventArgs e)
+        {
+            maxTime = 20000;
+            secondsToolStrip5SecondItem.Checked = false;
+            secondsToolStrip10SeconItem.Checked = false;
+            secondsToolStrip20SecondItem.Checked = true;
+            minuteToolStrip1MinItem.Checked = false;
+            noLimitToolStripNoLimiteItem.Checked = false;
+        }
+
+        private void minuteToolStrip1MinItem_Click(object sender, EventArgs e)
+        {
+            maxTime = 60000;
+            secondsToolStrip5SecondItem.Checked = false;
+            secondsToolStrip10SeconItem.Checked = false;
+            secondsToolStrip20SecondItem.Checked = false;
+            minuteToolStrip1MinItem.Checked = true;
+            noLimitToolStripNoLimiteItem.Checked = false;
+        }
+
+        private void noLimitToolStripNoLimiteItem_Click(object sender, EventArgs e)
+        {
+            maxTime = 1000000000;
+            secondsToolStrip5SecondItem.Checked = false;
+            secondsToolStrip10SeconItem.Checked = false;
+            secondsToolStrip20SecondItem.Checked = false;
+            minuteToolStrip1MinItem.Checked = false;
+            noLimitToolStripNoLimiteItem.Checked = true;
+        }    
     }
 }
