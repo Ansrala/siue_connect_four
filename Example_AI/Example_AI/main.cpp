@@ -2,12 +2,13 @@
 #include <stdlib.h>
 #include "connectfour.h"
 #include <time.h>
+#include <Windows.h>
 
 using namespace std;
 
 void main ()
 {
-	srand(time(NULL));
+	srand(GetTickCount());
 	int n[6][7];
 	int col = -1;
 

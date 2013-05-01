@@ -61,8 +61,6 @@ namespace Connect_Four_CSharp
 
             boardControl = new PictureBox[7,6];
             buttonControl = new Button[7];
-            counts = new int[7];
-
         
             redStartInfo = new ProcessStartInfo();
             redStartInfo.FileName = "";
@@ -77,11 +75,7 @@ namespace Connect_Four_CSharp
             blackStartInfo.UseShellExecute = false;
             blackStartInfo.CreateNoWindow = true;
 
-            for (int i = 0; i < 7; i++)
-            {
-                counts[i] = 0;
-            }
-
+   
             //This bit here is how to get the images from the resource handler
             Assembly _assembly;
             _assembly = Assembly.GetExecutingAssembly();
@@ -148,8 +142,15 @@ namespace Connect_Four_CSharp
                     
                 }
             }
+            if (logTurnCount == -1)
+                logTurnCount = 0;
+            if (turnCount != logTurnCount)
+                turnCount = logTurnCount + 1;
             log[turnCount] = pos;
-            logTurnCount = turnCount++; 
+            logTurnCount = turnCount++;
+            
+
+                      
             if (!fired)
             {
                 //player tried to drop on a full row
@@ -273,7 +274,7 @@ namespace Connect_Four_CSharp
             logTurnCount++;
             if (logTurnCount >= turnCount)
                 logTurnCount = turnCount;
-
+            
             value = log[logTurnCount];
             for (int i = 5; i >= -1; i--)
             {
@@ -375,7 +376,6 @@ namespace Connect_Four_CSharp
 
                 buttonControl[j].Enabled = false;
                 
-                counts[j] = 0;
             }
             log = new int[42];
             for (int i = 0; i < 42; i++)
@@ -732,7 +732,7 @@ namespace Connect_Four_CSharp
                 timer.Reset();
                 timer.Start();
 
-                while (timer.Elapsed.TotalMilliseconds <= 500)
+                while (timer.Elapsed.TotalMilliseconds <= 200)
                 {
                 }
 
@@ -745,7 +745,8 @@ namespace Connect_Four_CSharp
                     int.TryParse(result, out pos);
                     drop(pos);
                     File.Delete(move);
-                    nextTurn();
+                    if(gameStarted)
+                        nextTurn();
                 }
                 else
                 {
