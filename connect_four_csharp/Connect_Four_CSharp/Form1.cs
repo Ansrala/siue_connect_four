@@ -212,7 +212,7 @@ namespace Connect_Four_CSharp
                 {
                     board[value, i] = 0;
                     boardControl[value, i].BackgroundImage = blankFill;
-
+                    isRedTurn = !isRedTurn;
                     if (TurnIndicator.BackgroundImage == blackTurn)
                         TurnIndicator.BackgroundImage = redTurn;
                     else
@@ -253,6 +253,7 @@ namespace Connect_Four_CSharp
                         board[value, i] = -1;
                         boardControl[value, i].BackgroundImage = blackFill;
                     }
+                    isRedTurn = !isRedTurn;
                     if (TurnIndicator.BackgroundImage == blackTurn)
                         TurnIndicator.BackgroundImage = redTurn;
                     else
@@ -621,7 +622,7 @@ namespace Connect_Four_CSharp
 
         private void openLogFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            resetGame();
+           
             String content = "";
             OpenFileDialog openFile = new OpenFileDialog();
 
@@ -633,6 +634,7 @@ namespace Connect_Four_CSharp
             {
                 if (openFile.FileName != "")
                 {
+                    resetGame();
                     content = File.ReadAllText(openFile.FileName);
                     for (int i = 0; i < 42; i++)
                     {
