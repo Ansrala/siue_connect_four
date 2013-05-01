@@ -551,6 +551,14 @@ namespace Connect_Four_CSharp
             return 0;
         }
 
+        private void aiTurn(bool isRed)
+        {
+            //System.Diagnostics.Proccess
+        }
+
+        private void playerTurn()
+        {
+        }
 
         private void GameReset_Click(object sender, EventArgs e)
         {
