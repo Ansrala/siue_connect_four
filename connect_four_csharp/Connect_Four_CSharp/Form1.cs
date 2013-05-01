@@ -601,7 +601,7 @@ namespace Connect_Four_CSharp
         private void RedHum_Click(object sender, EventArgs e)
         {
             redHuman = true;
-            RedState.Text = "Human";
+             RedState.Text = "Human";
         }
 
         private void BlackComputer_Click(object sender, EventArgs e)
@@ -615,7 +615,7 @@ namespace Connect_Four_CSharp
                 blackFile.Text = blackAIloc = openFile.FileName;
             }
 
-            if (blackFile.Text == "")
+			if (blackFile.Text == "")
             {
                 blackHuman = true;
                 BlackState.Text = "Human";
@@ -733,14 +733,5 @@ namespace Connect_Four_CSharp
         {
             this.Close();
         }
-
-     
-
-
-
-
-
-
-
     }
 }
