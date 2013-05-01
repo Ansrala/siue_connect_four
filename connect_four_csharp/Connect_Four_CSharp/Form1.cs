@@ -286,11 +286,11 @@ namespace Connect_Four_CSharp
         private int findWinner()
         {
             int redsV = 0;
-            int [] redsH = new int[6];
+            
             int redsH = 0;
             int redsD = 0;
             int blacksV = 0;
-            int [] blacksH = new int [6];
+            
             int blacksH = 0;
             int blacksD = 0;
 
@@ -472,10 +472,7 @@ namespace Connect_Four_CSharp
 
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
 
-        }
 
 
     }
