@@ -198,6 +198,11 @@ namespace Connect_Four_CSharp
                 MessageBox.Show(this, "Red is the winner!", "Red wins!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
+            else if (result == 3)
+            {
+                gameStarted = false;
+                MessageBox.Show(this, "EVERYONE LOSES", "Tie!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
 
 
             //change turns
@@ -386,6 +391,13 @@ namespace Connect_Four_CSharp
             logTurnCount = -1;
             isRedTurn = true;
             TurnIndicator.BackgroundImage = redTurn;
+
+            GameStart.Enabled = true;
+            startGameToolStripMenuItem.Enabled = true;
+            BlackHum.Enabled = true;
+            BlackComputer.Enabled = true;
+            RedComputer.Enabled = true;
+            RedHum.Enabled = true;
 
         }
 
@@ -620,6 +632,19 @@ namespace Connect_Four_CSharp
             }
 
 
+            //tie check
+            int tops = 0;
+            for (int k = 0; k < 7; k++)
+            {
+                if (board[k, 5] != 0)
+                {
+                    tops++;
+                }
+            }
+            if (tops == 7)
+                return 3;
+
+
 
             return 0;
         }
@@ -763,21 +788,12 @@ namespace Connect_Four_CSharp
         private void GameReset_Click(object sender, EventArgs e)
         {
             resetGame();
-            GameStart.Enabled = true;
-            BlackHum.Enabled = true;
-            BlackComputer.Enabled = true;
-            RedComputer.Enabled = true;
-            RedHum.Enabled = true;
+            
         }
 
         private void resetGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
             resetGame();
-            GameStart.Enabled = true;
-            BlackHum.Enabled = true;
-            BlackComputer.Enabled = true;
-            RedComputer.Enabled = true;
-            RedHum.Enabled = true;
         }
 
         private void RedComputer_Click(object sender, EventArgs e)
@@ -834,7 +850,12 @@ namespace Connect_Four_CSharp
 
         private void GameStart_Click(object sender, EventArgs e)
         {
+            starGame();
+        }
+        private void starGame()
+        {
             GameStart.Enabled = false;
+            startGameToolStripMenuItem.Enabled = false;
             gameStarted = true;
 
             BlackHum.Enabled = false;
@@ -852,7 +873,6 @@ namespace Connect_Four_CSharp
                 aiTurn();
             }
         }
-
         private void openLogFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
            
@@ -1024,6 +1044,16 @@ namespace Connect_Four_CSharp
             secondsToolStrip20SecondItem.Checked = false;
             minuteToolStrip1MinItem.Checked = false;
             noLimitToolStripNoLimiteItem.Checked = true;
+        }
+
+        private void startGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            starGame();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(this, "This interface was made by:\n \tWestin Breger\n\tJason Mitchell\n\tMaster Joe Moore, Esquire", "Credits", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }    
     }
 }
