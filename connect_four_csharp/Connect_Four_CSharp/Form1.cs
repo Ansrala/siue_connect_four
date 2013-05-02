@@ -1,4 +1,12 @@
-﻿using System;
+﻿//Connect 4 interface
+//for the last project, 2013
+
+//Westin Breger
+//Joe Moore
+//Jason Mitchell
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -1050,6 +1058,7 @@ namespace Connect_Four_CSharp
         {
             starGame();
         }
+
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
